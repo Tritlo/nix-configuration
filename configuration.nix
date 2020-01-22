@@ -63,13 +63,14 @@ in
   # Set your time zone.
   time.timeZone = "Europe/Stockholm";
 
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     wget vim git dmenu rxvt_unicode
     xmobar stow
-    unstable.emacs26
 
+    (emacsWithPackages (ps: [ ps.emacs-libvterm ]))
     #terminus_font
     #terminus_font_ttf
 
@@ -89,7 +90,11 @@ in
     # General dev
     entr
     coreutils clang ripgrep fd
+    gnumake cmake
     jq
+
+    # doom-emacs requirements
+    pandoc nixfmt
 
     htop
 
@@ -144,6 +149,13 @@ in
 
   virtualisation.vmware.guest.enable = true;
 
+  fileSystems."/mnt/hgfs" = {
+    device = ".host:/";
+    fsType = "fuse./run/current-system/sw/bin/vmhgfs-fuse";
+    options = ["umask=22" "uid=1000" "gid=1000" "allow_other" "defaults" "auto_unmount"];
+  };
+
+
   # Enable the KDE Desktop Environment.
   services.xserver = {
     enable = true;
@@ -176,6 +188,7 @@ in
       pkgs.unstable.fira-code
     ];
    };
+
 
   
   # This value determines the NixOS release with which your system is to be
