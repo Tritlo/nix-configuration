@@ -70,6 +70,8 @@ in
     wget vim git dmenu rxvt_unicode
     xmobar stow
 
+    texlive.combined.scheme-medium
+
     (emacsWithPackages (ps: [ ps.emacs-libvterm ]))
     #terminus_font
     #terminus_font_ttf
@@ -86,12 +88,14 @@ in
     ghcide.ghcide-ghc865
     ghcide.hie-bios
     hlint
+    # cursed
+    stack
 
     # General dev
     entr
     coreutils clang ripgrep fd
     gnumake cmake
-    jq
+    jq bat
 
     # doom-emacs requirements
     pandoc nixfmt
