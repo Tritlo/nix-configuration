@@ -9,7 +9,7 @@
 
 let
   unstableTarball = fetchTarball https://github.com/NixOS/nixpkgs-channels/archive/nixos-unstable.tar.gz;
-  ghcide          = import (fetchTarball "https://github.com/hercules-ci/ghcide-nix/tarball/master") {};
+  # ghcide          = import (fetchTarball "https://github.com/hercules-ci/ghcide-nix/tarball/master") {};
 in
 {
   imports =
@@ -83,10 +83,15 @@ in
     unstable.cachix
 
     # Haskell
-    ghc cabal-install binutils
+    #ghc cabal-install
+    #binutils
+    unstable.ghc
+    unstable.cabal-install
+    unstable.haskellPackages.hie-bios
+    unstable.haskellPackages.ghcide
 
-    ghcide.ghcide-ghc865
-    ghcide.hie-bios
+    # ghcide.ghcide-ghc865
+    # ghcide.hie-bios
     hlint
     # cursed
     stack
