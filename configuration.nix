@@ -84,8 +84,8 @@ in
 
     # Haskell
     #ghc cabal-install
-    #binutils
-    unstable.ghc
+    binutils
+    unstable.haskell.compiler.ghc8101
     unstable.cabal-install
     unstable.haskellPackages.hie-bios
     unstable.haskellPackages.ghcide
